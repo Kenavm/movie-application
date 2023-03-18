@@ -3,9 +3,9 @@ import { Schema } from "mongoose";
 
 function migrateDb() {
   const DB_SRC_URL =
-    "mongodb+srv://kenavm:Nu8h9GMWqmQwRJw1@cluster0.ecks9tp.mongodb.net/sample_mflix";
+    "mongodb+srv://movie-application-user:Db2oCqbS0fiewy7h@cluster0.ecks9tp.mongodb.net/sample_mflix";
   const DB_TARGET_URL =
-    "mongodb+srv://kenavm:Nu8h9GMWqmQwRJw1@cluster0.ecks9tp.mongodb.net/cinema";
+    "mongodb+srv://movie-application-user:Db2oCqbS0fiewy7h@cluster0.ecks9tp.mongodb.net/cinema";
 
   const sourceCollectionName = "movies";
   const targetCollectionName = "films";
