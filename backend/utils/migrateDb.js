@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
-import {filmSchema} from '../model/Film'
+import { filmSchema } from "../model/Film";
+import { cinemaConnection } from "../databases";
 
 function migrateDb() {
   const DB_SRC_URL =
     "mongodb+srv://movie-application-user:Db2oCqbS0fiewy7h@cluster0.ecks9tp.mongodb.net/sample_mflix";
-  const DB_TARGET_URL =
-    "mongodb+srv://movie-application-user:Db2oCqbS0fiewy7h@cluster0.ecks9tp.mongodb.net/cinema";
 
   const sourceCollectionName = "movies";
   const targetCollectionName = "films";
@@ -17,9 +16,7 @@ function migrateDb() {
   });
   const sourceDb = mongoose.connection;
   sourceDb.once("open", async function () {
-    const targetDb = mongoose.createConnection(DB_TARGET_URL);
-    targetDb.once("open", async function () {
-
+    cinemaConnection.once("open", async function () {
       const sourceSchema = new Schema({
         _id: String,
         plot: String,
@@ -57,18 +54,18 @@ function migrateDb() {
       });
 
       const sourceModel = sourceDb.model(sourceCollectionName, sourceSchema);
-      const targetModel = targetDb.model(targetCollectionName, filmSchema);
+      const targetModel = cinemaConnection.model(targetCollectionName, filmSchema);
 
       const data = await sourceModel.find({
         poster: { $exists: true },
         type: "movie",
         "imdb.rating": { $gte: 8.5 },
       });
-      console.log(data)
+      console.log(data);
       await targetModel.insertMany(data);
 
       await sourceDb.close();
-      await targetDb.close();
+      await cinemaConnection.close();
     });
   });
 }
