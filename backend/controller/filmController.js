@@ -3,21 +3,39 @@ import { Film } from "../model/Film.js";
 //gets all films
 //GET /api/films
 export const getFilms = async (req, res, next) => {
-	try {
-		const films = await Film.find();
-
-		if (!films) {
-			return res.status(400).json({ success: false });
+	if (req.query.year !== undefined) {
+		const filmYear = req.query.year;
+		try {
+			const films = await Film.find({ year: filmYear });
+			if (!films) {
+				return res.status(400).json({ success: false });
+			}
+			res.status(200).json({
+				success: true,
+				count: films.length,
+				data: films,
+				msg: `displaying ${films.length} films from ${req.query.year}`,
+			});
+		} catch (err) {
+			res.status(400).json({ success: false });
 		}
+	} else {
+		try {
+			const films = await Film.find();
 
-		res.status(200).json({
-			success: true,
-			count: films.length,
-			data: films,
-			msg: "show all films",
-		});
-	} catch (err) {
-		res.status(400).json({ success: false });
+			if (!films) {
+				return res.status(400).json({ success: false });
+			}
+
+			res.status(200).json({
+				success: true,
+				count: films.length,
+				data: films,
+				msg: "show all films",
+			});
+		} catch (err) {
+			res.status(400).json({ success: false });
+		}
 	}
 };
 
@@ -45,7 +63,7 @@ export const getFilmByID = async (req, res, next) => {
 // get/api/films/?query
 
 export const getFilmByYear = async (req, res, next) => {
-	let filmYear = req.query.year;
+	const filmYear = req.query.year;
 	console.log(filmYear);
 	try {
 		const films = await Film.find({ year: filmYear });

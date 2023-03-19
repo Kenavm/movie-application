@@ -7,7 +7,7 @@ import {
 
 const filmRouter = express.Router();
 
-filmRouter.route("/").get(getFilms).get(getFilmByYear);
+filmRouter.route("/").get(getFilms);
 
 filmRouter.route("/:id").get(getFilmByID);
 
