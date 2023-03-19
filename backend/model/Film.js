@@ -20,4 +20,4 @@ const filmSchema = mongoose.Schema({
 
 const Film = movieConnection.model("Movie", filmSchema, "films");
 
-export default Film
+export {Film, filmSchema} 

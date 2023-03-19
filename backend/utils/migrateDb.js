@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
+import {filmSchema} from '../model/Film'
 
 function migrateDb() {
   const DB_SRC_URL =
@@ -18,22 +19,6 @@ function migrateDb() {
   sourceDb.once("open", async function () {
     const targetDb = mongoose.createConnection(DB_TARGET_URL);
     targetDb.once("open", async function () {
-      const filmSchema = mongoose.Schema({
-        _id: {
-          type: mongoose.Schema.Types.ObjectId,
-        },
-        title: String,
-        plot: String,
-        genres: Array,
-        runtime: Number,
-        year: Number,
-        imdb: {
-          rating: Number,
-          votes: Number,
-          id: String,
-        },
-        poster: String,
-      });
 
       const sourceSchema = new Schema({
         _id: String,
