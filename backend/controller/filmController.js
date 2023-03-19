@@ -20,3 +20,45 @@ export const getFilms = async (req, res, next) => {
 		res.status(400).json({ success: false });
 	}
 };
+
+//get film by ID
+//GET /api/films/:id
+
+export const getFilmByID = async (req, res, next) => {
+	try {
+		const films = await Film.findById(req.params.id);
+		if (!films) {
+			return res.status(400).json({ success: false });
+		}
+		res.status(200).json({
+			success: true,
+			count: films.length,
+			data: films,
+			msg: `displaying film with ID ${req.params.id}`,
+		});
+	} catch (err) {
+		res.status(400).json({ success: false });
+	}
+};
+
+//get films by year
+// get/api/films/?query
+
+export const getFilmByYear = async (req, res, next) => {
+	let filmYear = req.query.year;
+	console.log(filmYear);
+	try {
+		const films = await Film.find({ year: filmYear });
+		if (!films) {
+			return res.status(400).json({ success: false });
+		}
+		res.status(200).json({
+			success: true,
+			count: films.length,
+			data: films,
+			msg: `displaying all films from ${req.query.year}`,
+		});
+	} catch (err) {
+		res.status(400).json({ success: false });
+	}
+};
