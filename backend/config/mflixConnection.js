@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
 import { Film } from "../model/Film.js";
+import { Comment } from "../model/Comment.js";
 import cinemaConnection from "./cinemaConnection.js";
 
 async function mflixConnection() {
@@ -62,6 +63,19 @@ async function mflixConnection() {
 			});
 			console.log(data);
 			await targetModel.insertMany(data);
+
+			//----------------------------------
+			//const movieIds = data.map((movie) => movie._id);
+
+			//const commentCollectionName = "comments";
+
+			//const sourceCommentModel = sourceDb.model(commentCollectionName, Comment);
+			//const targetCommentModel = cinemaConnection.model(commentCollectionName, Comment);
+  			
+			//const comment = await sourceCommentModel.find({ movie_id: { $in: movieIds } });
+
+			//await targetCommentModel.insertMany(comment);
+			//-----------------------------------
 
 			await sourceDb.close();
 			await cinemaConnection.close();
