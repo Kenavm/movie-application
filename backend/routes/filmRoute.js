@@ -1,9 +1,8 @@
-import express from 'express'
-import { loadFilms } from '../controller/filmController.js';
+import express from "express";
+import { getFilms } from "../controller/filmController.js";
 
 const filmRouter = express.Router();
 
+filmRouter.get("/", getFilms);
 
-filmRouter.get("/", loadFilms)
-
-export {filmRouter}
+export { filmRouter };
