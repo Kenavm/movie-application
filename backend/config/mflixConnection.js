@@ -1,16 +1,18 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
-import { filmSchema } from "../model/Film.js";
+import { Film } from "../model/Film.js";
 import cinemaConnection from "./cinemaConnection.js";
 
-function mflixConnection() {
+async function mflixConnection() {
 	const sourceCollectionName = "movies";
 	const targetCollectionName = "films";
 
-	mongoose.connect(process.env.DB_MFLIX_URL, {
+	const conn = await mongoose.connect(process.env.DB_MFLIX_URL, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	});
+	console.log(`mflixDB connected: ${conn.connection.host}`.cyan.underline.bold);
+
 	const sourceDb = mongoose.connection;
 	sourceDb.once("open", async function () {
 		cinemaConnection.once("open", async function () {
@@ -51,10 +53,7 @@ function mflixConnection() {
 			});
 
 			const sourceModel = sourceDb.model(sourceCollectionName, sourceSchema);
-			const targetModel = cinemaConnection.model(
-				targetCollectionName,
-				filmSchema
-			);
+			const targetModel = cinemaConnection.model(targetCollectionName, Film);
 
 			const data = await sourceModel.find({
 				poster: { $exists: true },

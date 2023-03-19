@@ -12,11 +12,11 @@ const app = express();
 //loads the dotenv variables
 dotenv.config({ path: "./config/config.env" });
 
+cinemaConnection();
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
-
-cinemaConnection();
 
 app.use("/api/films", filmRouter);
 

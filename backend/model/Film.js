@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import cinemaConnection from "../config/cinemaConnection.js";
 
-const filmSchema = mongoose.Schema({
+const filmSchema = new mongoose.Schema({
 	_id: {
 		type: mongoose.Schema.Types.ObjectId,
 	},
