@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import FilmType from "./utils/FilmType";
+import { FilmList } from "./features/filmList/FilmList";
+import { fetchFilms } from "./api/fetchFilms";
+import { Pagination } from "./features/filmList/Pagination";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [films, setFilms] = useState<Array<FilmType>>([]);
+  const [page, setPage] = useState(2);
+  const [totalPages, setTotalPages] = useState(0);
+
+  function generatePages() {
+    const pagesLength = [];
+    for (let i = 0; i < totalPages; i++) {
+      pagesLength.push(i);
+    }
+    return pagesLength;
+  }
+
+  useEffect(() => {
+    async function pagination() {
+      const data = await fetchFilms(page);
+      const films = await data.films;
+
+      const totalPages = data.totalPages;
+      setFilms(films);
+      setTotalPages(totalPages);
+    }
+
+    pagination();
+  }, [page]);
+
+  function handlePagination(buttonIndex: number) {
+    setPage(buttonIndex);
+  }
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <FilmList films={films} />
+      <Pagination
+        movies={films}
+        onGeneratePages={generatePages}
+        onHandlePagination={handlePagination}
+      />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
