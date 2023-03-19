@@ -10,7 +10,6 @@ export const getFilms = async (req, res, next) => {
     const count = await Film.countDocuments();
 
     const totalPages = Math.ceil(count / perPage);
-
     const films = await Film.find()
       .skip((page - 1) * perPage)
       .limit(perPage);

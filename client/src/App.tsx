@@ -13,7 +13,6 @@ function App() {
   function generatePages() {
     const pagesLength = [];
     for (let i = 0; i < totalPages; i++) {
-      if (i > 12) break;
       pagesLength.push(i);
     }
     return pagesLength;
