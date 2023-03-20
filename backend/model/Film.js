@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import cinemaConnection from "../config/cinemaConnection.js";
 
 const filmSchema = new mongoose.Schema({
 	_id: {
