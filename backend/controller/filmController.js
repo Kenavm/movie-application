@@ -58,25 +58,3 @@ export const getFilmByID = async (req, res, next) => {
 		res.status(400).json({ success: false });
 	}
 };
-
-//get films by year
-// get/api/films/?query
-
-export const getFilmByYear = async (req, res, next) => {
-	const filmYear = req.query.year;
-	console.log(filmYear);
-	try {
-		const films = await Film.find({ year: filmYear });
-		if (!films) {
-			return res.status(400).json({ success: false });
-		}
-		res.status(200).json({
-			success: true,
-			count: films.length,
-			data: films,
-			msg: `displaying all films from ${req.query.year}`,
-		});
-	} catch (err) {
-		res.status(400).json({ success: false });
-	}
-};
