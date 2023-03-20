@@ -14,6 +14,7 @@ dotenv.config({ path: "./config/config.env" });
 
 cinemaConnection();
 
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
