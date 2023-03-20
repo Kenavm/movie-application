@@ -30,14 +30,13 @@ function App() {
       setFilms(films);
       setTotalPages(totalPages);
     }
-
     pagination();
   }, [page]);
  
   function handlePagination(buttonIndex: number) {
     setPage(buttonIndex);
   }
-
+ 
   function handleDetailClick(id: string) {
     const film = films.find((film) => film._id === id);
     console.log(id)
@@ -52,6 +51,7 @@ function App() {
         <DetailViewModal
           id={filmToView.id}
           title={filmToView.title}
+          plot={filmToView.plot}
           poster={filmToView.poster}
           genres={filmToView.genres}
           runtime={filmToView.runtime}
