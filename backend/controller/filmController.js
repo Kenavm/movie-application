@@ -30,6 +30,22 @@ export const getFilms = async (req, res) => {
 		} catch (err) {
 			res.status(400).json({ success: false });
 		}
+	} else if (req.query.title !== undefined) {
+		const filmTitle = req.query.title;
+		try {
+			const films = await Film.find({ title: { $regex: filmTitle } });
+			if (!films) {
+				return res.status(400).json({ success: false });
+			}
+			res.status(200).json({
+				success: true,
+				count: films.length,
+				data: films,
+				msg: `displaying ${films.length} films that contain "${filmTitle}" in their title`,
+			});
+		} catch (err) {
+			res.status(400).json({ success: false });
+		}
 	} else {
 		try {
 			const films = await Film.find();
