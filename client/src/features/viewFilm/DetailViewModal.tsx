@@ -29,9 +29,9 @@ function DetailViewModal(props: {
             <p>Year: {props.year}</p>
             <p>Runtime: {props.runtime} minutes</p>
             <div className="genres">
-              <p>Genres: </p>
+              <p>Genres:&nbsp;</p>
               {props.genres.map((genre) => (
-                <p>{genre}</p>
+                <p>{genre},&nbsp;</p>
               ))}
             </div>
             <p>Imdb rating: {props.imdb.rating}</p>

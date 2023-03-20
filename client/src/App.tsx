@@ -11,7 +11,19 @@ function App() {
   const [page, setPage] = useState(2);
   const [totalPages, setTotalPages] = useState(0);
   const [openDetailView, setOpenDetailView] = useState(false);
-  const [filmToView, setFilmtoView] = useState();
+  const [filmToView, setFilmtoView] = useState({
+    _id: "",
+    title: "",
+    plot: "",
+    poster: "",
+    genres: [],
+    runtime: 0,
+    year: 0,
+    imdb: {
+        rating: 0,
+        votes: 0
+    }
+  });
 
   function generatePages() {
     const pagesLength = [];
@@ -39,7 +51,7 @@ function App() {
  
   function handleDetailClick(id: string) {
     const film = films.find((film) => film._id === id);
-    console.log(id)
+    
     setFilmtoView(film);
     setOpenDetailView(true);
   }
@@ -49,7 +61,7 @@ function App() {
       <FilmList films={films} onHandleDetailClick={handleDetailClick} />
       {openDetailView && (
         <DetailViewModal
-          id={filmToView.id}
+          id={filmToView._id}
           title={filmToView.title}
           plot={filmToView.plot}
           poster={filmToView.poster}
