@@ -2,7 +2,7 @@ import { Film } from "../model/Film.js";
 
 //gets all films
 //GET /api/films
-const getFilms = async (req, res) => {
+export const getFilms = async (req, res) => {
 	const perPage = 12;
 	const page = req.query.page;
 
@@ -50,6 +50,21 @@ const getFilms = async (req, res) => {
 	}
 };
 
-function getFilmsById(req, res) {}
-
-export { getFilms, getFilmsById };
+//gets film by id
+//GET /api/films/:id
+export const getFilmByID = async (req, res, next) => {
+	try {
+		const films = await Film.findById(req.params.id);
+		if (!films) {
+			return res.status(400).json({ success: false });
+		}
+		res.status(200).json({
+			success: true,
+			count: films.length,
+			data: films,
+			msg: `displaying film with ID ${req.params.id}`,
+		});
+	} catch (err) {
+		res.status(400).json({ success: false });
+	}
+};
