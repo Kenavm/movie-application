@@ -4,11 +4,14 @@ import FilmType from "./utils/FilmType";
 import { FilmList } from "./features/filmList/FilmList";
 import { fetchFilms } from "./api/fetchFilms";
 import { Pagination } from "./features/filmList/Pagination";
+import { DetailViewModal } from "./features/viewFilm/DetailViewModal";
 
 function App() {
   const [films, setFilms] = useState<Array<FilmType>>([]);
   const [page, setPage] = useState(2);
   const [totalPages, setTotalPages] = useState(0);
+  const [openDetailView, setOpenDetailView] = useState(false);
+  const [filmToView, setFilmtoView] = useState();
 
   function generatePages() {
     const pagesLength = [];
@@ -22,7 +25,7 @@ function App() {
     async function pagination() {
       const data = await fetchFilms(page);
       const films = await data.films;
-
+    
       const totalPages = data.totalPages;
       setFilms(films);
       setTotalPages(totalPages);
@@ -30,14 +33,33 @@ function App() {
 
     pagination();
   }, [page]);
-
+ 
   function handlePagination(buttonIndex: number) {
     setPage(buttonIndex);
   }
 
+  function handleDetailClick(id: string) {
+    const film = films.find((film) => film._id === id);
+    console.log(id)
+    setFilmtoView(film);
+    setOpenDetailView(true);
+  }
+
   return (
     <div className="App">
-      <FilmList films={films} />
+      <FilmList films={films} onHandleDetailClick={handleDetailClick} />
+      {openDetailView && (
+        <DetailViewModal
+          id={filmToView.id}
+          title={filmToView.title}
+          poster={filmToView.poster}
+          genres={filmToView.genres}
+          runtime={filmToView.runtime}
+          year={filmToView.year}
+          imdb={filmToView.imdb}
+          openDetailView={setOpenDetailView}
+        />
+      )}
       <Pagination
         movies={films}
         onGeneratePages={generatePages}
