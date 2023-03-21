@@ -46,6 +46,22 @@ export const getFilms = async (req, res) => {
 		} catch (err) {
 			res.status(400).json({ success: false });
 		}
+	} else if (req.query.genres !== undefined) {
+		const filmGenre = req.query.genres;
+		try {
+			const films = await Film.find({ genres: { $in: [filmGenre] } });
+			if (!films) {
+				return res.status(400).json({ success: false });
+			}
+			res.status(200).json({
+				success: true,
+				count: films.length,
+				data: films,
+				msg: `displaying ${films.length} films that are the genre ${filmGenre}`,
+			});
+		} catch (err) {
+			res.status(400).json({ success: false });
+		}
 	} else {
 		try {
 			const films = await Film.find();
