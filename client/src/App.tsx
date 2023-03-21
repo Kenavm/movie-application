@@ -24,8 +24,8 @@ function App() {
         votes: 0
     }
   });
-
-  function generatePages() {
+  
+  function generatePagesforPagination() {
     const pagesLength = [];
     for (let i = 0; i < totalPages; i++) {
       pagesLength.push(i);
@@ -73,8 +73,8 @@ function App() {
         />
       )}
       <Pagination
-        movies={films}
-        onGeneratePages={generatePages}
+        films={films}
+        onGeneratePages={generatePagesforPagination}
         onHandlePagination={handlePagination}
       />
     </div>

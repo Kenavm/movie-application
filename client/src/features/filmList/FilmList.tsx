@@ -6,8 +6,6 @@ function FilmList(props: {
   films: Array<FilmType>;
   onHandleDetailClick: Function;
 }) {
-  
-
   return (
     <div className="films">
       {props.films?.map((film) => {
@@ -17,7 +15,7 @@ function FilmList(props: {
             className="film"
           >
             <h2>{film.title}</h2>
-            <img src={isImage(film.poster) ? film.poster: "./src/assets/images/notAvailable.jpg"} />
+            <img src={film.poster} />
           </div>
         );
       })}

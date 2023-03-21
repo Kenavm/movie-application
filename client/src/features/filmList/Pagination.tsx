@@ -1,13 +1,13 @@
 import FilmType from '../../utils/types/FilmType';
 
 function Pagination(props: {
-  movies: Array<FilmType>;
+  films: Array<FilmType>;
   onGeneratePages: Function;
   onHandlePagination: Function;
 }) {
   return (
     <div className="pagination">
-      {props.movies.length === 0
+      {props.films.length === 0
         ? null
         : props.onGeneratePages().map((index: number) => {
             return (
