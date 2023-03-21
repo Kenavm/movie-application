@@ -14,7 +14,7 @@ function FilmList(props: {
             onClick={() => props.onHandleDetailClick(film._id)}
             className="film"
           >
-            <h2>{film.title}</h2>
+            
             <img src={film.poster} />
           </div>
         );
