@@ -2,6 +2,7 @@ import { Button } from "../../components/Button";
 import Header from "../../components/Header";
 import Paragraph from "../../components/Paragraph";
 import Span from "../../components/Span";
+import Image from '../../components/Image'
 import "./DetailViewModal.css";
 
 function DetailViewModal(props: {
@@ -25,7 +26,7 @@ function DetailViewModal(props: {
           <Header heading={props.title} />
         </div>
         <div className="body">
-          <img className="image" src={props.poster}></img>
+          <Image className="image" src={props.poster} />
           <div>
             <Paragraph content={`Year: ${props.year}`} />
             <Paragraph content={`Runtime: ${props.runtime}`} />
