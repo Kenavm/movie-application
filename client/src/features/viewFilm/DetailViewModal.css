@@ -13,10 +13,10 @@
   }
 
 .modalContainer {
-    width: 1500px;
-    height: 1200px;
+    width: 80vw;
+    height: 80vh;
     border-radius: 12px;
-    background-color: lightblue;
+    background-color: lightskyblue;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
     flex-direction: column;
@@ -45,8 +45,9 @@
   }
 
   .image {
-   width: 35%;
+   width: 25%;
    margin-right: 50px;
+   margin-left:50px;
   }
   
   .genres {
