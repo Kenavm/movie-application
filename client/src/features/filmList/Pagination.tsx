@@ -1,4 +1,4 @@
-import FilmType from '../../utils/FilmType';
+import FilmType from '../../utils/types/FilmType';
 
 function Pagination(props: {
   movies: Array<FilmType>;

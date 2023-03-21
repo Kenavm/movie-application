@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import FilmType from "./utils/FilmType";
+import FilmType from "./utils/types/FilmType";
 import { FilmList } from "./features/filmList/FilmList";
 import { fetchFilms } from "./api/fetchFilms";
 import { Pagination } from "./features/filmList/Pagination";

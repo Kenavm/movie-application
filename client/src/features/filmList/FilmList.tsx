@@ -1,4 +1,5 @@
-import FilmType from "../../utils/FilmType";
+import FilmType from "../../utils/types/FilmType";
+import { isImage } from "../../utils/functions/utilityFunctions";
 import "./FilmList.css";
 
 function FilmList(props: {
@@ -14,7 +15,7 @@ function FilmList(props: {
             className="film"
           >
             <h2>{film.title}</h2>
-            <img src={film.poster} />
+            <img src={isImage(film.poster) ? film.poster: "./src/assets/images/notAvailable.jpg"} />
           </div>
         );
       })}

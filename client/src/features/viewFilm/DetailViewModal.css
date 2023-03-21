@@ -1,5 +1,3 @@
-
-
   .image {
    width: 25%;
    margin-right: 50px;
@@ -10,10 +8,6 @@
   .genres {
     display: flex;
     justify-content: center;
-  }
-
-  img {
-    cursor: pointer;
   }
 
   .span {
