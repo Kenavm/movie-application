@@ -8,7 +8,7 @@ import { DetailViewModal } from "./features/viewFilm/DetailViewModal";
 
 function App() {
   const [films, setFilms] = useState<Array<FilmType>>([]);
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [openDetailView, setOpenDetailView] = useState(false);
   const [filmToView, setFilmtoView] = useState({
@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     async function pagination() {
       const data = await fetchFilms(page);
-      const films = await data.films;
+      const films = data.films;
     
       const totalPages = data.totalPages;
       setFilms(films);

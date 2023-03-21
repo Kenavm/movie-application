@@ -6,6 +6,8 @@ function FilmList(props: {
   films: Array<FilmType>;
   onHandleDetailClick: Function;
 }) {
+  
+
   return (
     <div className="films">
       {props.films?.map((film) => {
