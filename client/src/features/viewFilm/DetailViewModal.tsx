@@ -2,8 +2,9 @@ import { Button } from "../../components/Button";
 import Header from "../../components/Header";
 import Paragraph from "../../components/Paragraph";
 import Span from "../../components/Span";
-import Image from '../../components/Image'
+import Image from "../../components/Image";
 import "./DetailViewModal.css";
+import Container from "../../components/Container/Container";
 
 function DetailViewModal(props: {
   id: string;
@@ -20,14 +21,14 @@ function DetailViewModal(props: {
   openDetailView: Function;
 }) {
   return (
-    <div className="modalOverlay">
-      <div className="modalContainer">
-        <div className="title">
+    <Container className={"modalOverlay"}>
+      <Container className={"modalContainer"}>
+        <Container className="title">
           <Header heading={props.title} />
-        </div>
-        <div className="body">
+        </Container>
+        <Container className="body">
           <Image className="image" src={props.poster} />
-          <div>
+          <Container>
             <Paragraph content={`Year: ${props.year}`} />
             <Paragraph content={`Runtime: ${props.runtime}`} />
             <Span
@@ -36,17 +37,17 @@ function DetailViewModal(props: {
             ></Span>
             <Paragraph content={`Imdb rating: ${props.imdb.rating}`} />
             <Paragraph content={props.plot} />
-          </div>
-        </div>
-        <div className="footer">
+          </Container>
+        </Container>
+        <Container className="footer">
           <Button
             text={"Close"}
             className={"Close"}
             onClick={() => props.openDetailView(false)}
           />
-        </div>
-      </div>
-    </div>
+        </Container>
+      </Container>
+    </Container>
   );
 }
 
