@@ -1,8 +1,13 @@
 import express from "express";
-import { getComments } from "../controller/commentsController.js";
+import {
+	getCommentByID,
+	getComments,
+} from "../controller/commentsController.js";
 
 const commentRouter = express.Router();
 
-commentRouter.use("/", getComments);
+commentRouter.route("/").get(getComments);
+
+commentRouter.route("/:id").get(getCommentByID);
 
 export { commentRouter };
