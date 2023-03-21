@@ -48,9 +48,19 @@
    width: 25%;
    margin-right: 50px;
    margin-left:50px;
+   
   }
   
   .genres {
+    display: flex;
+    justify-content: center;
+  }
+
+  img {
+    cursor: pointer;
+  }
+
+  .span {
     display: flex;
     justify-content: center;
   }

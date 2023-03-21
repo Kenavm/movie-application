@@ -1,6 +1,7 @@
 import { Button } from "../../components/Button";
 import Header from "../../components/Header";
-import { Label } from "../../components/Label";
+import Paragraph from "../../components/Paragraph";
+import Span from "../../components/Span";
 import "./DetailViewModal.css";
 
 function DetailViewModal(props: {
@@ -26,16 +27,14 @@ function DetailViewModal(props: {
         <div className="body">
           <img className="image" src={props.poster}></img>
           <div>
-            <p>Year: {props.year}</p>
-            <p>Runtime: {props.runtime} minutes</p>
-            <div className="genres">
-              <p>Genres:&nbsp;</p>
-              {props.genres.map((genre) => (
-                <p>{genre},&nbsp;</p>
-              ))}
-            </div>
-            <p>Imdb rating: {props.imdb.rating}</p>
-            <p>{props.plot}</p>
+            <Paragraph content={`Year: ${props.year}`} />
+            <Paragraph content={`Runtime: ${props.runtime}`} />
+            <Span
+              className="genres"
+              content={`Genres: ${props.genres.join(", ")}`}
+            ></Span>
+            <Paragraph content={`Imdb rating: ${props.imdb.rating}`} />
+            <Paragraph content={props.plot} />
           </div>
         </div>
         <div className="footer">
