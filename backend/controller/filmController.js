@@ -33,7 +33,9 @@ export const getFilms = async (req, res) => {
 	} else if (req.query.title !== undefined) {
 		const filmTitle = req.query.title;
 		try {
-			const films = await Film.find({ title: { $regex: filmTitle } });
+			const films = await Film.find({
+				title: { $regex: filmTitle, $options: "i" },
+			});
 			if (!films) {
 				return res.status(400).json({ success: false });
 			}
