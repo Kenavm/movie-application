@@ -68,9 +68,34 @@ export const getFilms = async (req, res) => {
 		const filmRating = req.query.rating;
 		try {
 			const films = await Film.find({ "imdb.rating": { $gte: filmRating } });
-
-			res.status(200).json({ success: true, count: films.length, data: films });
-		} catch (err) {}
+			if (!films) {
+				res.status(400).json({ success: false });
+			}
+			res.status(200).json({
+				success: true,
+				count: films.length,
+				data: films,
+				msg: `showing all movies with an imbd rating higher than ${filmRating}`,
+			});
+		} catch (err) {
+			res.status(400).json({ success: false });
+		}
+	} else if (req.query.runtime !== undefined) {
+		const filmRuntime = req.query.runtime;
+		try {
+			const films = await Film.find({ runtime: { $lte: filmRuntime } });
+			if (!films) {
+				res.status(400).json({ success: false });
+			}
+			res.status(200).json({
+				success: true,
+				count: films.length,
+				data: films,
+				msg: `showing all movies with a film length less than ${filmRuntime}`,
+			});
+		} catch (err) {
+			res.status(400).json({ success: false });
+		}
 	} else {
 		try {
 			const films = await Film.find();
