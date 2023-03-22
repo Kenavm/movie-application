@@ -64,6 +64,13 @@ export const getFilms = async (req, res) => {
 		} catch (err) {
 			res.status(400).json({ success: false });
 		}
+	} else if (req.query.rating !== undefined) {
+		const filmRating = req.query.rating;
+		try {
+			const films = await Film.find({ "imdb.rating": { $gte: filmRating } });
+
+			res.status(200).json({ success: true, count: films.length, data: films });
+		} catch (err) {}
 	} else {
 		try {
 			const films = await Film.find();
