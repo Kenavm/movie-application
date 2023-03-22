@@ -9,14 +9,12 @@ function HomePage(props: {
   onHandlePagination: Function;
 }) {
   return (
-    <Container className="App">
       <MainLayout
         films={props.films}
         onHandleDetailClick={props.onHandleDetailClick}
         onGeneratePages={props.onGeneratePages}
         onHandlePagination={props.onHandlePagination}
       ></MainLayout>
-    </Container>
   );
 }
 
