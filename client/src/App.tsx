@@ -12,7 +12,7 @@ function App() {
   const [films, setFilms] = useState<Array<FilmType>>([]);
   const [page, setPage] = useState(2);
   const [totalPages, setTotalPages] = useState(0);
-  const [filmToView, setFilmtoView] = useState({
+  const [filmToView, setFilmtoView] = useState<FilmType | undefined>({
     _id: "",
     title: "",
     plot: "",
@@ -32,8 +32,6 @@ function App() {
 
   function handleDetailClick(id: string) {
     const film = films.find((film) => film._id === id);
-
- 
     setFilmtoView(film);
   }
 
@@ -87,14 +85,14 @@ function App() {
         path="/film/:filmSlug"
         element={
           <FilmPage
-            id={filmToView._id}
-            title={filmToView.title}
-            plot={filmToView.plot}
-            poster={filmToView.poster}
-            genres={filmToView.genres}
-            runtime={filmToView.runtime}
-            year={filmToView.year}
-            imdb={filmToView.imdb}
+            id={filmToView!._id}
+            title={filmToView!.title}
+            plot={filmToView!.plot}
+            poster={filmToView!.poster}
+            genres={filmToView!.genres}
+            runtime={filmToView!.runtime}
+            year={filmToView!.year}
+            imdb={filmToView!.imdb}
           />
         }
       />
