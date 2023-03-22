@@ -28,7 +28,8 @@ function FilmList(props: {
                 onHandleDetailClick={props.onHandleDetailClick}
                 className={"film"}
                 filmId={film._id}
-                type={"filmLayout"}
+                type={"mainLayout"}
+                title={film.title}
                 poster={film.poster}
               />
             );
