@@ -1,5 +1,6 @@
 import FilmType from "../utils/types/FilmType";
 import { MainLayout } from "../features/layouts/MainLayout";
+import Container from "../components/Container/Container";
 
 function HomePage(props: {
   films: Array<FilmType>;
@@ -8,14 +9,14 @@ function HomePage(props: {
   onHandlePagination: Function;
 }) {
   return (
-    <div className="App">
+    <Container className="App">
       <MainLayout
         films={props.films}
         onHandleDetailClick={props.onHandleDetailClick}
         onGeneratePages={props.onGeneratePages}
         onHandlePagination={props.onHandlePagination}
       ></MainLayout>
-    </div>
+    </Container>
   );
 }
 
