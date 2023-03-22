@@ -4,6 +4,7 @@ import Span from "../../components/Span";
 import ImageComponent from "../../components/ImageComponent";
 import "./FilmPage.css";
 import Container from "../../components/Container/Container";
+import { Navbar } from "../../components/Navbar";
 
 function FilmPage(props: {
   id: string;
@@ -21,6 +22,7 @@ function FilmPage(props: {
   return (
     <>
       {" "}
+      <Navbar className={"navbar"}/>
       <Container className="title">
         <Header heading={props.title} />
       </Container>
