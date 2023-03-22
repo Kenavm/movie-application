@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import FilmType from "../utils/types/FilmType";
-import ImageComponent from "./ImageComponent";
+import FilmType from "../../utils/types/FilmType";
+import ImageComponent from "../ImageComponent";
 import "./Navbar.css";
 function Navbar(props: {
   className?: string;

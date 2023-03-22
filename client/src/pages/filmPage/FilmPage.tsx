@@ -4,7 +4,7 @@ import Span from "../../components/Span";
 import ImageComponent from "../../components/ImageComponent";
 import "./FilmPage.css";
 import Container from "../../components/Container/Container";
-import { Navbar } from "../../components/Navbar";
+import { Navbar } from "../../components/Navbar/Navbar";
 
 function FilmPage(props: {
   id: string;

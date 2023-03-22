@@ -1,6 +1,6 @@
 import { Filterbar } from "../../components/Filterbar";
 import { Footer } from "../../components/Footer";
-import { Navbar } from "../../components/Navbar";
+import { Navbar } from "../../components/Navbar/Navbar";
 import FilmType from "../../utils/types/FilmType";
 import { FilmList } from "../filmList/FilmList";
 
