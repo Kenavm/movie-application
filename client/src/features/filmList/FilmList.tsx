@@ -1,6 +1,6 @@
 import FilmType from "../../utils/types/FilmType";
 import "./FilmList.css";
-import {Card} from '../../components/Card'
+import { Card } from "../../components/Card";
 
 function FilmList(props: {
   films: Array<FilmType>;
@@ -13,22 +13,24 @@ function FilmList(props: {
         ? props.films?.map((film) => {
             return (
               <Card
-                onClick={() => props.onHandleDetailClick(film._id)}
+                onHandleDetailClick={props.onHandleDetailClick}
                 className={"film"}
                 type={"filmLayout"}
+                filmId={film._id}
                 title={film.title}
                 poster={film.poster}
-                />
+              />
             );
           })
         : props.films?.map((film) => {
             return (
               <Card
-                onClick={() => props.onHandleDetailClick(film._id)}
+                onHandleDetailClick={props.onHandleDetailClick}
                 className={"film"}
+                filmId={film._id}
                 type={"filmLayout"}
                 poster={film.poster}
-                />
+              />
             );
           })}
     </div>
