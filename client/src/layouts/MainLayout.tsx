@@ -1,8 +1,8 @@
-import { Filterbar } from "../../components/Filterbar";
-import { Footer } from "../../components/Footer";
-import { Navbar } from "../../components/Navbar/Navbar";
-import FilmType from "../../utils/types/FilmType";
-import { FilmList } from "../filmList/FilmList";
+import { Filterbar } from "../components/Filterbar";
+import { Footer } from "../components/Footer";
+import { Navbar } from "../components/Navbar/Navbar";
+import FilmType from "../utils/types/FilmType";
+import { FilmList } from "../features/filmList/FilmList";
 
 function MainLayout(props: {
   films: Array<FilmType>;

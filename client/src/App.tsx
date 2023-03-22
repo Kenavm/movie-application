@@ -1,12 +1,12 @@
 import "./App.css";
-import { Routes, Route, Link } from "react-router-dom";
-import { HomePage } from "./pages/Homepage";
+import { Routes, Route } from "react-router-dom";
+import { HomePage } from "./pages/homepage/Homepage";
 import { FilmPage } from "./pages/filmPage/FilmPage";
 import { Comments } from "./features/commentsList/Comments";
 import { useEffect, useState } from "react";
 import { fetchFilms } from "./api/fetchFilms";
 import FilmType from "./utils/types/FilmType";
-import { Films } from "./pages/Films";
+import { Films } from "./pages/films/Films";
 
 function App() {
   const [films, setFilms] = useState<Array<FilmType>>([]);

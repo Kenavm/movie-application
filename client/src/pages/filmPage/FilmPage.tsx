@@ -5,6 +5,7 @@ import ImageComponent from "../../components/ImageComponent";
 import "./FilmPage.css";
 import Container from "../../components/Container/Container";
 import { Navbar } from "../../components/Navbar/Navbar";
+import { useState } from "react";
 
 function FilmPage(props: {
   id: string;
@@ -19,15 +20,26 @@ function FilmPage(props: {
     votes: number;
   };
 }) {
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
   return (
     <>
       {" "}
-      <Navbar className={"navbar"}/>
+      <Navbar className={"navbar"} />
       <Container className="title">
         <Header heading={props.title} />
       </Container>
       <Container className="body">
-        <ImageComponent className="image" src={props.poster} />
+        <ImageComponent
+          className="image"
+          src={
+            imageError ? "/src/assets/images/notAvailable.jpg" : props.poster
+          }
+          onError={handleImageError}
+        />
         <Container>
           <Paragraph content={`Year: ${props.year}`} />
           <Paragraph content={`Runtime: ${props.runtime}`} />

@@ -1,9 +1,9 @@
-import { Filterbar } from "../../components/Filterbar";
-import { Footer } from "../../components/Footer";
-import { Navbar } from "../../components/Navbar/Navbar";
-import FilmType from "../../utils/types/FilmType";
-import { FilmList } from "../filmList/FilmList";
-import { Pagination } from "../filmList/Pagination";
+import { Filterbar } from "../components/Filterbar";
+import { Footer } from "../components/Footer";
+import { Navbar } from "../components/Navbar/Navbar";
+import FilmType from "../utils/types/FilmType";
+import { FilmList } from "../features/filmList/FilmList";
+import { Pagination } from "../features/filmList/pagination/Pagination";
 
 function FilmsLayout(props: {
   films: Array<FilmType>;

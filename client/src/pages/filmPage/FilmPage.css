@@ -1,16 +1,15 @@
-  .image {
-   width: 30%;
-   margin-right: 50px;
-   margin-left:50px;
-   
-  }
-  
-  .genres {
-    display: flex;
-    justify-content: center;
-  }
+.image {
+  width: 30%;
+  margin-right: 50px;
+  margin-left: 50px;
+}
 
-  .span {
-    display: flex;
-    justify-content: center;
-  }
+.genres {
+  display: flex;
+  justify-content: center;
+}
+
+.span {
+  display: flex;
+  justify-content: center;
+}
