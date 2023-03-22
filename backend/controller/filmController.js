@@ -3,7 +3,7 @@ import { Film } from "../model/Film.js";
 //gets all films
 //GET /api/films
 export const getFilms = async (req, res) => {
-	const perPage = 12;
+	const perPage = 20;
 	const page = req.query.page;
 
 	if (page !== undefined) {
