@@ -1,24 +1,36 @@
 import FilmType from "../../utils/types/FilmType";
-import { isImage } from "../../utils/functions/utilityFunctions";
 import "./FilmList.css";
+import {Card} from '../../components/Card'
 
 function FilmList(props: {
   films: Array<FilmType>;
   onHandleDetailClick: Function;
+  type: string;
 }) {
   return (
     <div className="films">
-      {props.films?.map((film) => {
-        return (
-          <div
-            onClick={() => props.onHandleDetailClick(film._id)}
-            className="film"
-          >
-            <h2>{film.title}</h2>
-            <img src={isImage(film.poster) ? film.poster: "./src/assets/images/notAvailable.jpg"} />
-          </div>
-        );
-      })}
+      {props.type === "filmLayout"
+        ? props.films?.map((film) => {
+            return (
+              <Card
+                onClick={() => props.onHandleDetailClick(film._id)}
+                className={"film"}
+                type={"filmLayout"}
+                title={film.title}
+                poster={film.poster}
+                />
+            );
+          })
+        : props.films?.map((film) => {
+            return (
+              <Card
+                onClick={() => props.onHandleDetailClick(film._id)}
+                className={"film"}
+                type={"filmLayout"}
+                poster={film.poster}
+                />
+            );
+          })}
     </div>
   );
 }
