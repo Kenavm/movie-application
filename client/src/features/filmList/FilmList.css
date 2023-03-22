@@ -1,11 +1,11 @@
 .films {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 150px;
   }
   
   .film {
     width: 23%;
-    margin-bottom: 20px;
   }
 
   img {

@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom";
 import FilmType from "../utils/types/FilmType";
-import './Navbar.css'
-function Navbar(props: {className:string, films: Array<FilmType>, onHandleDetailClick: Function}) {
-
+import ImageComponent from "./ImageComponent";
+import "./Navbar.css";
+function Navbar(props: {
+  className: string;
+  films: Array<FilmType>;
+  onHandleDetailClick: Function;
+}) {
   const filmProps = {
     onHandleDetailClick: props.onHandleDetailClick,
-    films: props.films
-  }
-  
+    films: props.films,
+  };
+
   return (
     <nav className={props.className}>
       <Link to="/">
-        <img className="image" src="./src/assets/images/logo.png" alt="logo" />
+        <ImageComponent className="logo" src="./src/assets/images/logo.png" />
       </Link>
       <ul className="links">
         <li>

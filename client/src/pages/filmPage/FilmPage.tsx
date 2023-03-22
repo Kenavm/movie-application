@@ -1,12 +1,11 @@
-
-import Header from "../components/Header";
-import Paragraph from "../components/Paragraph";
-import Span from "../components/Span";
-import ImageComponent from "../components/ImageComponent";
+import Header from "../../components/Header";
+import Paragraph from "../../components/Paragraph";
+import Span from "../../components/Span";
+import ImageComponent from "../../components/ImageComponent";
 import "./FilmPage.css";
-import Container from "../components/Container/Container";
+import Container from "../../components/Container/Container";
 
-function MoviePage(props: {
+function FilmPage(props: {
   id: string;
   title: string;
   plot: string;
@@ -43,4 +42,4 @@ function MoviePage(props: {
   );
 }
 
-export { MoviePage };
+export { FilmPage };

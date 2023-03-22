@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 import { HomePage } from "./pages/Homepage";
-import { MoviePage } from "./pages/MoviePage";
+import { FilmPage } from "./pages/filmPage/FilmPage";
 import { Comments } from "./features/commentsList/Comments";
 import { useEffect, useState } from "react";
 import { fetchFilms } from "./api/fetchFilms";
@@ -86,7 +86,7 @@ function App() {
       <Route
         path="/film/:filmSlug"
         element={
-          <MoviePage
+          <FilmPage
             id={filmToView._id}
             title={filmToView.title}
             plot={filmToView.plot}
