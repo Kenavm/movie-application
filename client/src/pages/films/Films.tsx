@@ -1,4 +1,4 @@
-import { FilmsLayout } from "../../layouts/FilmsLayout";
+import { FilmsLayout } from "../../layouts/filmsLayout/FilmsLayout";
 import FilmType from "../../utils/types/FilmType";
 
 function Films(props: {

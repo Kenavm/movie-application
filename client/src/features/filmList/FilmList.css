@@ -1,7 +1,8 @@
 .films {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 150px;
+    margin-top:15%;
+    justify-content: space-between;
   }
   
   .film {

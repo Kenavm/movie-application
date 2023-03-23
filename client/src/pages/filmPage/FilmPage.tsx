@@ -32,30 +32,32 @@ function FilmPage(props: {
     <>
       {" "}
       <Navbar className={"navbar"} />
-      <Container className="title">
-        <Header heading={props.title} />
-      </Container>
-      <Container className="body">
-        <ImageComponent
-          className="image"
-          src={
-            imageError ? "/src/assets/images/notAvailable.jpg" : props.poster
-          }
-          onError={handleImageError}
-        />
-        <Container>
-          <Paragraph content={`Year: ${props.year}`} />
-          <Paragraph content={`Runtime: ${props.runtime}`} />
-          <Span
-            className="genres"
-            content={`Genres: ${props.genres.join(", ")}`}
-          ></Span>
-          <Paragraph content={`Imdb rating: ${props.imdb.rating}`} />
-          <Paragraph content={props.plot} />
+      <Container className="detailViewContainer">
+        <Container className="title">
+          <Header heading={props.title} />
         </Container>
-       
+        <Button text="Go Back" onClick={() => history(-1)}></Button>
+        <Container className="body">
+          <ImageComponent
+            className="image"
+            src={
+              imageError ? "/src/assets/images/notAvailable.jpg" : props.poster
+            }
+            onError={handleImageError}
+          />
+          <Container>
+            <Paragraph content={`Year: ${props.year}`} />
+            <Paragraph content={`Runtime: ${props.runtime}`} />
+            <Span
+              className="genres"
+              content={`Genres: ${props.genres.join(", ")}`}
+            ></Span>
+            <Paragraph content={`Imdb rating: ${props.imdb.rating}`} />
+            <Paragraph content={props.plot} />
+          </Container>
+        </Container>
       </Container>
-      <Button text="Go Back" onClick={() => history(-1)}></Button>
+      
       <Container className="footer"></Container>
     </>
   );

@@ -1,5 +1,5 @@
 import FilmType from "../../utils/types/FilmType";
-import { MainLayout } from "../../layouts/HomeLayout";
+import { MainLayout } from "../../layouts/homeLayout/HomeLayout";
 
 
 function HomePage(props: {

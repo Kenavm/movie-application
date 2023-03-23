@@ -1,9 +1,12 @@
-import { Filterbar } from "../components/Filterbar";
-import { Footer } from "../components/Footer";
-import { Navbar } from "../components/Navbar/Navbar";
-import FilmType from "../utils/types/FilmType";
-import { FilmList } from "../features/filmList/FilmList";
-import { Pagination } from "../features/filmList/pagination/Pagination";
+import { Filterbar } from "../../components/Filterbar";
+import { Footer } from "../../components/Footer";
+import { Navbar } from "../../components/Navbar/Navbar";
+import FilmType from "../../utils/types/FilmType";
+import { FilmList } from "../../features/filmList/FilmList";
+import { Pagination } from "../../features/filmList/pagination/Pagination";
+import Container from "../../components/Container/Container";
+import './FilmsLayout.css'
+
 
 function FilmsLayout(props: {
   films: Array<FilmType>;
@@ -13,6 +16,7 @@ function FilmsLayout(props: {
 }) {
   return (
     <>
+     <Container className="navbarFilmListContainer">
       <Navbar
         className={"navbar"}
         films={props.films}
@@ -28,6 +32,7 @@ function FilmsLayout(props: {
         onGeneratePages={props.onGeneratePages}
         onHandlePagination={props.onHandlePagination}
       />
+      </Container>
       <Footer />
     </>
   );
