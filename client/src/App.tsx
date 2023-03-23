@@ -96,7 +96,7 @@ function App() {
           />
         }
       />
-      <Route path="/comments" element={<Comments />} />
+      <Route path="/comments" element={<Comments id={filmToView!._id} />} />
     </Routes>
   );
 }

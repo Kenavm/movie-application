@@ -3,7 +3,19 @@ import { Comment } from "../model/Comment.js";
 // get all comments
 // GET api/comments
 export const getComments = async (req, res, next) => {
-	if (req.query.movieId !== undefined) {
+	const perPage = 100;
+	const page = req.query.page;
+
+	if (page !== undefined) {
+		const count = await Comment.countDocuments();
+
+		const totalPages = Math.ceil(count / perPage);
+		const comments = await Comment.find()
+			.skip((page - 1) * perPage)
+			.limit(perPage);
+		res.json({ comments, totalPages });
+	}
+	else if (req.query.movieId !== undefined) {
 		const movieId = req.query.movieId;
 		try {
 			const comments = await Comment.find({ movie_id: movieId });

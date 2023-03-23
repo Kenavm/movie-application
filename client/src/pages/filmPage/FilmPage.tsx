@@ -8,6 +8,8 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { useState } from "react";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router";
+import { Comments } from "../../features/commentsList/Comments";
+import CommentType from "../../utils/types/CommentType";
 
 function FilmPage(props: {
   id: string;
@@ -55,6 +57,7 @@ function FilmPage(props: {
             <Paragraph content={`Imdb rating: ${props.imdb.rating}`} />
             <Paragraph content={props.plot} />
           </Container>
+          <Comments id={props.id} />
         </Container>
       </Container>
       
