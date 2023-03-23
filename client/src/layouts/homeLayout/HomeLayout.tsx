@@ -6,7 +6,7 @@ import { FilmList } from "../../features/filmList/FilmList";
 import Container from "../../components/Container/Container";
 import './HomeLayout.css'
 
-function MainLayout(props: {
+function HomeLayout(props: {
   films: Array<FilmType>;
   onHandleDetailClick: Function;
   onGeneratePages: Function;
@@ -34,4 +34,4 @@ function MainLayout(props: {
   );
 }
 
-export { MainLayout };
+export { HomeLayout };

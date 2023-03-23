@@ -1,5 +1,5 @@
 import FilmType from "../../utils/types/FilmType";
-import { MainLayout } from "../../layouts/homeLayout/HomeLayout";
+import {  HomeLayout } from "../../layouts/homeLayout/HomeLayout";
 
 
 function HomePage(props: {
@@ -9,12 +9,12 @@ function HomePage(props: {
   onHandlePagination: Function;
 }) {
   return (
-    <MainLayout
+    <HomeLayout
       films={props.films}
       onHandleDetailClick={props.onHandleDetailClick}
       onGeneratePages={props.onGeneratePages}
       onHandlePagination={props.onHandlePagination}
-    ></MainLayout>
+    ></HomeLayout>
   );
 }
 
