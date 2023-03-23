@@ -13,6 +13,7 @@ function FilmList(props: {
         ? props.films?.map((film) => {
             return (
               <Card
+                key={film._id}
                 onHandleDetailClick={props.onHandleDetailClick}
                 className={"film"}
                 type={"filmLayout"}
@@ -25,6 +26,7 @@ function FilmList(props: {
         : props.films?.map((film) => {
             return (
               <Card
+                key={film._id}
                 onHandleDetailClick={props.onHandleDetailClick}
                 className={"film"}
                 filmId={film._id}

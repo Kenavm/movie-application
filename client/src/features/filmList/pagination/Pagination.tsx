@@ -9,7 +9,7 @@ function Pagination(props: {
     <div className="pagination">
       {props.onGeneratePages().map((index: number) => {
         return (
-          <Button
+          <Button key={index}
             onClick={() => props.onHandlePagination(index + 1)}
             text={(index + 1).toString()}
           />

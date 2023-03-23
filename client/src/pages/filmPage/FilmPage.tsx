@@ -6,6 +6,8 @@ import "./FilmPage.css";
 import Container from "../../components/Container/Container";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { useState } from "react";
+import { Button } from "../../components/Button";
+import { useNavigate } from "react-router";
 
 function FilmPage(props: {
   id: string;
@@ -21,6 +23,7 @@ function FilmPage(props: {
   };
 }) {
   const [imageError, setImageError] = useState(false);
+  const history = useNavigate();
 
   const handleImageError = () => {
     setImageError(true);
@@ -50,7 +53,9 @@ function FilmPage(props: {
           <Paragraph content={`Imdb rating: ${props.imdb.rating}`} />
           <Paragraph content={props.plot} />
         </Container>
+       
       </Container>
+      <Button text="Go Back" onClick={() => history(-1)}></Button>
       <Container className="footer"></Container>
     </>
   );
