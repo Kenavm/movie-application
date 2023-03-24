@@ -1,39 +1,39 @@
 .navbar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 15%;
-  background-color: white;
-  transition: transform 0.3s ease-in-out;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 15%;
+	background-color: white;
+	transition: transform 0.3s ease-in-out;
 }
 
 .navbar.hide {
-  transform: translateY(-100%);
+	transform: translateY(-100%);
 }
 
 .logo {
-  width: 12vw;
-  height: 12vh;
-  padding: 0;
-  position: absolute;
-  left: 10px;
-  top: 10px;
+	width: 12vw;
+	height: 12vh;
+	padding: 0;
+	position: absolute;
+	left: 10px;
+	top: 10px;
 }
 
 .links {
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-  padding-bottom: 10px;
-  margin: 0;
-  text-align: center;
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+	padding-bottom: 10px;
+	margin: 0;
+	text-align: center;
 }
 
 .links > li:not(:last-of-type) {
-  margin-right: 15px;
+	margin-right: 15px;
 }
