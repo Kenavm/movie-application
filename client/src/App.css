@@ -7,11 +7,15 @@
 }
 
 .movie-filter {
-	width: 50%;
+	width: 30%;
+}
+
+.movie-sort {
+	width: 30%;
 }
 
 .filter-input {
-	width: 50%;
+	width: 40%;
 	text-align: center;
 }
 
