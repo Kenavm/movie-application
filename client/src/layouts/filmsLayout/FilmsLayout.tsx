@@ -32,7 +32,7 @@ function FilmsLayout(props: {
 					onHandlePagination={props.onHandlePagination}
 				/>
 			</Container>
-			<Footer text={"© 2023 by Cinema"}/>
+			<Footer />
 		</>
 	);
 }

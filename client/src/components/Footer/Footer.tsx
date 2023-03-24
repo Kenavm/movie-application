@@ -1,10 +1,10 @@
 import Container from "../Container/Container";
 import './Footer.css'
 
-function Footer(props: { text: string }) {
+function Footer() {
   return (
     <Container className="footerContainer">
-      <p>{props.text}</p>
+      <p>{"© 2023 by Cinema"}</p>
       <p>{"Legal Notice"}</p>
       <p>{"Privacy Policy"}</p>
     </Container>

@@ -29,7 +29,7 @@ function HomeLayout(props: {
           type={"mainLayout"}
         />
       </Container>
-      <Footer text={"© 2023 by Cinema"}/>
+      <Footer />
     </>
   );
 }
