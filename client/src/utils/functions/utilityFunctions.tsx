@@ -5,16 +5,15 @@ function isImage(src:string) {
     const isValidImage =
       image.complete && image.naturalHeight !== 0 ? true : false;
 
-
     return isValidImage;
   }
 
   function generatePages(totalPages: number) {
-		const pagesLength = [];
+		const pages = [];
 		for (let i = 0; i < totalPages; i++) {
-			pagesLength.push(i);
+			pages.push(i);
 		}
-		return pagesLength;
+		return pages;
 	}
 
   export {isImage, generatePages}

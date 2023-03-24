@@ -81,7 +81,7 @@ function FilmPage(props: {
             <Paragraph content={props.plot} />
           </Container>
           <Comments id={props.id} comments={comments} />
-          {comments.length >= 10 && <Pagination onGeneratePages={generatePages} onHandlePagination={handlePagination} />}
+          {comments.length >= 10 && <Pagination onGeneratePages={generatePages} onHandlePagination={handlePagination} totalPages={totalPages} />}
         </Container>
       </Container>
       <Container className="footer"></Container>

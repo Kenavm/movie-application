@@ -29,12 +29,12 @@ function Comments(props: { id: string; comments?: Array<CommentType> }) {
                 ></Paragraph>
 
                 <Span className={"text"} content={comment.text}></Span>
-                <Paragraph
+                <Span
                   className={"content"}
                   content={
                     "______________________________________________________"
                   }
-                ></Paragraph>
+                ></Span>
               </Container>
             );
           })

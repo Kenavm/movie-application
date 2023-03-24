@@ -1,5 +1,5 @@
 import { Filterbar } from "../../components/Filterbar";
-import { Footer } from "../../components/Footer";
+import { Footer } from "../../components/Footer/Footer";
 import { Navbar } from "../../components/Navbar/Navbar";
 import FilmType from "../../utils/types/FilmType";
 import { FilmList } from "../../features/filmList/FilmList";
@@ -29,7 +29,7 @@ function HomeLayout(props: {
           type={"mainLayout"}
         />
       </Container>
-      <Footer />
+      <Footer text={"© 2023 by Cinema"}/>
     </>
   );
 }

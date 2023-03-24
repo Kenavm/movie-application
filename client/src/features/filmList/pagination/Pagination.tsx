@@ -4,6 +4,7 @@ import "./Pagination.css";
 function Pagination(props: {
   onGeneratePages: Function;
   onHandlePagination: Function;
+  totalPages?: number;
 }) {
   return (
     <div className="pagination">
