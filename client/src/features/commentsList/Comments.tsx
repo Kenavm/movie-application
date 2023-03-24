@@ -1,39 +1,44 @@
 import CommentType from "../../utils/types/CommentType";
-import { Pagination } from "../filmList/pagination/Pagination";
-import { useState , useEffect } from "react";
-import { fetchComments } from "../../api/fetchComments";
+import Span from "../../components/Span";
+import Container from "../../components/Container/Container";
+import "./Comments.css";
+import Header from "../../components/Header";
+import Paragraph from "../../components/Paragraph";
 
-function Comments(props: { id: string }) {
-  const [comments, setComments] = useState<Array<CommentType>>([]);
-  console.log(props.id)
-
-  useEffect(() => {
-    async function whatever() {
-      const data = await fetchComments(props.id);
-      const comments = await data.data;
-      console.log(comments.length)
-      setComments(comments);
-    }
-    whatever();
-  }, []);
-
-  console.log(comments)
+function Comments(props: { id: string; comments?: Array<CommentType> }) {
   return (
     <div className="MovieComments">
-      <h3>Comments</h3>
-      {comments !== undefined ? comments.map((comment) => {
-        return (
-          <div className="MovieComments-movieComment">
-            <div>
-              <b>{comment.name}</b>
-            </div>
-            <div>{comment.email}</div>
-            <div>{comment.date}</div>
-            <br></br>
-            <div>{comment.text}</div>
-          </div>
-        );
-      }): ""}
+      <Header className={"header"} heading="Comments"></Header>
+      {props.comments !== undefined
+        ? props.comments.map((comment) => {
+            return (
+              <Container className="comments">
+                <Paragraph
+                  className={"content"}
+                  content={comment.name}
+                ></Paragraph>
+
+                <Paragraph
+                  className={"content"}
+                  content={comment.email}
+                ></Paragraph>
+
+                <Paragraph
+                  className={"content"}
+                  content={comment.date.substring(0, 10)}
+                ></Paragraph>
+
+                <Span className={"text"} content={comment.text}></Span>
+                <Paragraph
+                  className={"content"}
+                  content={
+                    "______________________________________________________"
+                  }
+                ></Paragraph>
+              </Container>
+            );
+          })
+        : ""}
     </div>
   );
 }

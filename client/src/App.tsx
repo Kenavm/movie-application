@@ -8,10 +8,11 @@ import { fetchFilms } from "./api/fetchFilms";
 import FilmType from "./utils/types/FilmType";
 import { Films } from "./pages/films/Films";
 import { Filterbar } from "./components/Filterbar";
+import { generatePages } from "./utils/functions/utilityFunctions";
 
 function App() {
 	const [films, setFilms] = useState<Array<FilmType>>([]);
-	const [page, setPage] = useState(2);
+	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
 	const [filmToView, setFilmtoView] = useState<FilmType | undefined>({
 		_id: "",
@@ -36,16 +37,9 @@ function App() {
 		setFilmtoView(film);
 	}
 
-	function generatePages() {
-		const pagesLength = [];
-		for (let i = 0; i < totalPages; i++) {
-			pagesLength.push(i);
-		}
-		return pagesLength;
-	}
 
 	useEffect(() => {
-		async function pagination() {
+		async function loadFilms() {
 			const data = await fetchFilms(page);
 			const films = await data.films;
 
@@ -53,7 +47,7 @@ function App() {
 			setFilms(films);
 			setTotalPages(totalPages);
 		}
-		pagination();
+		loadFilms();
 	}, [page]);
 
   return (

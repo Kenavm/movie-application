@@ -9,4 +9,12 @@ function isImage(src:string) {
     return isValidImage;
   }
 
-  export {isImage}
+  function generatePages(totalPages: number) {
+		const pagesLength = [];
+		for (let i = 0; i < totalPages; i++) {
+			pagesLength.push(i);
+		}
+		return pagesLength;
+	}
+
+  export {isImage, generatePages}

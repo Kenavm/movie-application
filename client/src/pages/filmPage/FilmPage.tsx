@@ -5,11 +5,14 @@ import ImageComponent from "../../components/ImageComponent";
 import "./FilmPage.css";
 import Container from "../../components/Container/Container";
 import { Navbar } from "../../components/Navbar/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router";
 import { Comments } from "../../features/commentsList/Comments";
 import CommentType from "../../utils/types/CommentType";
+import { fetchComments } from "../../api/fetchComments";
+import { generatePages } from "../../utils/functions/utilityFunctions";
+import { Pagination } from "../../features/filmList/pagination/Pagination";
 
 function FilmPage(props: {
   id: string;
@@ -24,12 +27,32 @@ function FilmPage(props: {
     votes: number;
   };
 }) {
+  const [comments, setComments] = useState<Array<CommentType>>([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [page, setPage] = useState(1);
   const [imageError, setImageError] = useState(false);
   const history = useNavigate();
 
   const handleImageError = () => {
     setImageError(true);
   };
+
+  function handlePagination(buttonIndex: number) {
+		setPage(buttonIndex);
+	}
+
+  useEffect(() => {
+    async function loadComments() {
+      const data = await fetchComments(props.id, page);
+      const comments = data.comments;
+      const totalPages = data.totalPages;
+      console.log(comments)
+      setTotalPages(totalPages);
+      setComments(comments);
+    }
+    loadComments();
+  }, [page]);
+
   return (
     <>
       {" "}
@@ -57,10 +80,10 @@ function FilmPage(props: {
             <Paragraph content={`Imdb rating: ${props.imdb.rating}`} />
             <Paragraph content={props.plot} />
           </Container>
-          <Comments id={props.id} />
+          <Comments id={props.id} comments={comments} />
+          {comments.length >= 10 && <Pagination onGeneratePages={generatePages} onHandlePagination={handlePagination} />}
         </Container>
       </Container>
-      
       <Container className="footer"></Container>
     </>
   );
