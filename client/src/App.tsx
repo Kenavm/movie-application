@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { fetchFilms } from "./api/fetchFilms";
 import FilmType from "./utils/types/FilmType";
 import { Films } from "./pages/films/Films";
-import { Filterbar } from "./components/Filterbar";
 
 function App() {
 	const [films, setFilms] = useState<Array<FilmType>>([]);
@@ -27,6 +26,10 @@ function App() {
 		},
 	});
 
+	const [filter, setFilter] = useState("");
+	const [sort, setSort] = useState("");
+	const [input, setInput] = useState("");
+
 	function handlePagination(buttonIndex: number) {
 		setPage(buttonIndex);
 	}
@@ -44,17 +47,28 @@ function App() {
 		return pagesLength;
 	}
 
+	function handleInput(inputInput) {
+		setInput(inputInput);
+	}
+
+	function handleFilter(filterInput: string | number) {
+		setFilter(filterInput);
+	}
+
 	useEffect(() => {
 		async function pagination() {
-			const data = await fetchFilms(page);
-			const films = await data.films;
+			const data = await fetchFilms(page, filter, input);
+			const films = data.films;
+			console.log("films", films);
 
 			const totalPages = data.totalPages;
 			setFilms(films);
 			setTotalPages(totalPages);
+			console.log(data);
 		}
 		pagination();
-	}, [page]);
+		console.log(films);
+	}, [page, input, filter]);
 
 	return (
 		<Routes>
@@ -78,6 +92,8 @@ function App() {
 							onHandleDetailClick={handleDetailClick}
 							onGeneratePages={generatePages}
 							onHandlePagination={handlePagination}
+							onHandleFilter={handleFilter}
+							onHandleInput={handleInput}
 						/>
 					}
 				/>

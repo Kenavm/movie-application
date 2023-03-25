@@ -12,6 +12,8 @@ function FilmsLayout(props: {
 	onHandleDetailClick: Function;
 	onGeneratePages: Function;
 	onHandlePagination: Function;
+	onHandleFilter: Function;
+	onHandleInput: Function;
 }) {
 	return (
 		<>
@@ -21,7 +23,10 @@ function FilmsLayout(props: {
 					films={props.films}
 					onHandleDetailClick={props.onHandleDetailClick}
 				/>
-				<Filterbar />
+				<Filterbar
+					onHandleFilter={props.onHandleFilter}
+					onHandleInput={props.onHandleInput}
+				/>
 				<FilmList
 					films={props.films}
 					onHandleDetailClick={props.onHandleDetailClick}
