@@ -28,9 +28,13 @@ function App() {
     },
   });
   const [allComments, setAllComments] = useState<Array<CommentType>>([]);
-  function handlePagination(buttonIndex: number) {
-    setPage(buttonIndex);
-  }
+	const [filter, setFilter] = useState("");
+	const [sort, setSort] = useState("");
+	const [input, setInput] = useState("");
+
+	function handlePagination(buttonIndex: number) {
+		setPage(buttonIndex);
+	}
 
   function handleDetailClick(id: string) {
     const film = films.find((film) => film._id === id);
@@ -49,60 +53,70 @@ function App() {
     loadComments();
   }, [page]);
 
-  useEffect(() => {
-    async function loadFilms() {
-      const data = await fetchFilms(page);
-      const films = await data.films;
+	function handleInput(input) {
+		setInput(input);
+	}
 
-      const totalPages = data.totalPages;
-      setFilms(films);
-      setTotalPages(totalPages);
-    }
-    loadFilms();
-  }, [page]);
+	function handleFilter(filterInput: string | number) {
+		setFilter(filterInput);
+	}
 
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <HomePage
-            films={films}
-            onHandleDetailClick={handleDetailClick}
-            onHandlePagination={handlePagination}
-          />
-        }
-      />
-      {
-        <Route
-          path="/films"
-          element={
-            <Films
+	useEffect(() => {
+		async function loadFilms() {
+			const data = await fetchFilms(page, filter, input);
+			const films = data.films;
+
+			const totalPages = data.totalPages;
+			setFilms(films);
+			setTotalPages(totalPages);
+			console.log(data);
+		}
+		loadFilms();
+	}, [page, input, filter]);
+
+	return (
+		<Routes>
+			<Route
+				path="/"
+				element={
+					<HomePage
+						films={films}
+						onHandleDetailClick={handleDetailClick}
+						onHandlePagination={handlePagination}
+					/>
+				}
+			/>
+			{
+				<Route
+					path="/films"
+					element={
+						<Films
               films={films}
               onHandleDetailClick={handleDetailClick}
               onHandlePagination={handlePagination}
-            />
-          }
-        />
-      }
-      <Route
-        path="/film/:filmSlug"
-        element={
-          <FilmPage
-            id={filmToView!._id}
-            title={filmToView!.title}
-            plot={filmToView!.plot}
-            poster={filmToView!.poster}
-            genres={filmToView!.genres}
-            runtime={filmToView!.runtime}
-            year={filmToView!.year}
-            imdb={filmToView!.imdb}
-          />
-        }
-      />
-      <Route path="/comments" element={<Comments comments={allComments} onHandlePagination={handlePagination} />} />
-    </Routes>
-  );
+              onHandleFilter={handleFilter}
+              onHandleInput={handleInput}					/>
+					}
+				/>
+			}
+			<Route
+				path="/film/:filmSlug"
+				element={
+					<FilmPage
+						id={filmToView!._id}
+						title={filmToView!.title}
+						plot={filmToView!.plot}
+						poster={filmToView!.poster}
+						genres={filmToView!.genres}
+						runtime={filmToView!.runtime}
+						year={filmToView!.year}
+						imdb={filmToView!.imdb}
+					/>
+				}
+			/>
+			<Route path="/comments" element={<Comments comments={allComments} onHandlePagination={handlePagination} />} />
+		</Routes>
+	);
 }
 
 export default App;

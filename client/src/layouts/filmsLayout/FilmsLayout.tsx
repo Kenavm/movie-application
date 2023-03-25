@@ -8,28 +8,34 @@ import Container from "../../components/Container/Container";
 import "./FilmsLayout.css";
 
 function FilmsLayout(props: {
-  films: Array<FilmType>;
-  onHandleDetailClick: Function;
-  onHandlePagination: Function;
+	films: Array<FilmType>;
+	onHandleDetailClick: Function;
+	onHandlePagination: Function;
+	onHandleFilter: Function;
+	onHandleInput: Function;
 }) {
-  return (
-    <>
-      <Container className="navbarFilmListContainer">
-        <Navbar />
-        <Filterbar />
-        <FilmList
-          films={props.films}
-          onHandleDetailClick={props.onHandleDetailClick}
-          type={"filmLayout"}
-        />
-        <Pagination
-          onHandlePagination={props.onHandlePagination}
-          totalPages={8}
-        />
-      </Container>
-      <Footer />
-    </>
-  );
+	return (
+		<>
+			<Container className="navbarFilmListContainer">
+				<Navbar
+				/>
+				<Filterbar
+					onHandleFilter={props.onHandleFilter}
+					onHandleInput={props.onHandleInput}
+				/>
+				<FilmList
+					films={props.films}
+					onHandleDetailClick={props.onHandleDetailClick}
+					type={"filmLayout"}
+				/>
+				<Pagination
+					onHandlePagination={props.onHandlePagination} 
+					totalPages={8}
+				/>
+			</Container>
+			<Footer />
+		</>
+	);
 }
 
 export { FilmsLayout };
