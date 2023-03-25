@@ -7,10 +7,11 @@ import { useEffect, useState } from "react";
 import { fetchFilms } from "./api/fetchFilms";
 import FilmType from "./utils/types/FilmType";
 import { Films } from "./pages/films/Films";
+import { generatePages } from "./utils/functions/utilityFunctions";
 
 function App() {
 	const [films, setFilms] = useState<Array<FilmType>>([]);
-	const [page, setPage] = useState(2);
+	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
 	const [filmToView, setFilmtoView] = useState<FilmType | undefined>({
 		_id: "",
@@ -39,14 +40,6 @@ function App() {
 		setFilmtoView(film);
 	}
 
-	function generatePages() {
-		const pagesLength = [];
-		for (let i = 0; i < totalPages; i++) {
-			pagesLength.push(i);
-		}
-		return pagesLength;
-	}
-
 	function handleInput(inputInput) {
 		setInput(inputInput);
 	}
@@ -56,18 +49,16 @@ function App() {
 	}
 
 	useEffect(() => {
-		async function pagination() {
+		async function loadFilms() {
 			const data = await fetchFilms(page, filter, input);
 			const films = data.films;
-			console.log("films", films);
 
 			const totalPages = data.totalPages;
 			setFilms(films);
 			setTotalPages(totalPages);
 			console.log(data);
 		}
-		pagination();
-		console.log(films);
+		loadFilms();
 	}, [page, input, filter]);
 
 	return (
