@@ -38,15 +38,14 @@ function FilmPage(props: {
   };
 
   function handlePagination(buttonIndex: number) {
-		setPage(buttonIndex);
-	}
+    setPage(buttonIndex);
+  }
 
   useEffect(() => {
     async function loadComments() {
       const data = await fetchComments(props.id, page);
       const comments = data.comments;
       const totalPages = data.totalPages;
-      console.log(comments)
       setTotalPages(totalPages);
       setComments(comments);
     }
@@ -56,7 +55,7 @@ function FilmPage(props: {
   return (
     <>
       {" "}
-      <Navbar className={"navbar"} />
+      <Navbar />
       <Container className="detailViewContainer">
         <Container className="title">
           <Header heading={props.title} />
@@ -80,8 +79,11 @@ function FilmPage(props: {
             <Paragraph content={`Imdb rating: ${props.imdb.rating}`} />
             <Paragraph content={props.plot} />
           </Container>
-          <Comments id={props.id} comments={comments} />
-          {comments.length >= 10 && <Pagination onGeneratePages={generatePages} onHandlePagination={handlePagination} totalPages={totalPages} />}
+          <Comments
+            id={props.id}
+            comments={comments}
+            onHandlePagination={handlePagination}
+          />
         </Container>
       </Container>
       <Container className="footer"></Container>
