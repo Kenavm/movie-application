@@ -7,48 +7,59 @@ import { useEffect, useState } from "react";
 import { fetchFilms } from "./api/fetchFilms";
 import FilmType from "./utils/types/FilmType";
 import { Films } from "./pages/films/Films";
-import { Filterbar } from "./components/Filterbar";
-import { generatePages } from "./utils/functions/utilityFunctions";
+import CommentType from "./utils/types/CommentType";
+import { fetchComments } from "./api/fetchComments";
 
 function App() {
-	const [films, setFilms] = useState<Array<FilmType>>([]);
-	const [page, setPage] = useState(1);
-	const [totalPages, setTotalPages] = useState(0);
-	const [filmToView, setFilmtoView] = useState<FilmType | undefined>({
-		_id: "",
-		title: "",
-		plot: "",
-		poster: "",
-		genres: [],
-		runtime: 0,
-		year: 0,
-		imdb: {
-			rating: 0,
-			votes: 0,
-		},
-	});
+  const [films, setFilms] = useState<Array<FilmType>>([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [filmToView, setFilmtoView] = useState<FilmType | undefined>({
+    _id: "",
+    title: "",
+    plot: "",
+    poster: "",
+    genres: [],
+    runtime: 0,
+    year: 0,
+    imdb: {
+      rating: 0,
+      votes: 0,
+    },
+  });
+  const [allComments, setAllComments] = useState<Array<CommentType>>([]);
+  function handlePagination(buttonIndex: number) {
+    setPage(buttonIndex);
+  }
 
-	function handlePagination(buttonIndex: number) {
-		setPage(buttonIndex);
-	}
+  function handleDetailClick(id: string) {
+    const film = films.find((film) => film._id === id);
+    setFilmtoView(film);
+  }
 
-	function handleDetailClick(id: string) {
-		const film = films.find((film) => film._id === id);
-		setFilmtoView(film);
-	}
+  useEffect(() => {
+    async function loadComments() {
+      const data = await fetchComments("", page);
+      const comments = data.comments;
+      const totalPages = data.totalPages;
+      console.log(comments);
+      setTotalPages(totalPages);
+      setAllComments(comments);
+    }
+    loadComments();
+  }, [page]);
 
+  useEffect(() => {
+    async function loadFilms() {
+      const data = await fetchFilms(page);
+      const films = await data.films;
 
-	useEffect(() => {
-		async function loadFilms() {
-			const data = await fetchFilms(page);
-			const films = await data.films;
-
-			const totalPages = data.totalPages;
-			setFilms(films);
-			setTotalPages(totalPages);
-		}
-		loadFilms();
-	}, [page]);
+      const totalPages = data.totalPages;
+      setFilms(films);
+      setTotalPages(totalPages);
+    }
+    loadFilms();
+  }, [page]);
 
   return (
     <Routes>
@@ -58,7 +69,6 @@ function App() {
           <HomePage
             films={films}
             onHandleDetailClick={handleDetailClick}
-            onGeneratePages={generatePages}
             onHandlePagination={handlePagination}
           />
         }
@@ -70,7 +80,6 @@ function App() {
             <Films
               films={films}
               onHandleDetailClick={handleDetailClick}
-              onGeneratePages={generatePages}
               onHandlePagination={handlePagination}
             />
           }
@@ -91,7 +100,7 @@ function App() {
           />
         }
       />
-      <Route path="/comments" element={<Comments id={filmToView!._id} />} />
+      <Route path="/comments" element={<Comments comments={allComments} onHandlePagination={handlePagination} />} />
     </Routes>
   );
 }

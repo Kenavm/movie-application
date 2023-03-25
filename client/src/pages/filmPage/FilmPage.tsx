@@ -12,7 +12,7 @@ import { Comments } from "../../features/commentsList/Comments";
 import CommentType from "../../utils/types/CommentType";
 import { fetchComments } from "../../api/fetchComments";
 import { generatePages } from "../../utils/functions/utilityFunctions";
-import { Pagination } from "../../features/filmList/pagination/Pagination";
+import { Pagination } from "../../features/pagination/Pagination";
 
 function FilmPage(props: {
   id: string;
