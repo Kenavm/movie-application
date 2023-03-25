@@ -3,13 +3,11 @@ import FilmType from "../../utils/types/FilmType";
 import ImageComponent from "../ImageComponent";
 import "./Navbar.css";
 function Navbar(props: {
-  className?: string;
-  films?: Array<FilmType>;
-  onHandleDetailClick?: Function;
+
 }) {
 
   return (
-    <nav className={props.className}>
+    <nav className={"navbar"}>
       <Link to="/">
         <ImageComponent className="logo" src="/src/assets/images/logo.png" />
       </Link>

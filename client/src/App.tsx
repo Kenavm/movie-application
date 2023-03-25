@@ -7,26 +7,27 @@ import { useEffect, useState } from "react";
 import { fetchFilms } from "./api/fetchFilms";
 import FilmType from "./utils/types/FilmType";
 import { Films } from "./pages/films/Films";
-import { generatePages } from "./utils/functions/utilityFunctions";
+import CommentType from "./utils/types/CommentType";
+import { fetchComments } from "./api/fetchComments";
 
 function App() {
-	const [films, setFilms] = useState<Array<FilmType>>([]);
-	const [page, setPage] = useState(1);
-	const [totalPages, setTotalPages] = useState(0);
-	const [filmToView, setFilmtoView] = useState<FilmType | undefined>({
-		_id: "",
-		title: "",
-		plot: "",
-		poster: "",
-		genres: [],
-		runtime: 0,
-		year: 0,
-		imdb: {
-			rating: 0,
-			votes: 0,
-		},
-	});
-
+  const [films, setFilms] = useState<Array<FilmType>>([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [filmToView, setFilmtoView] = useState<FilmType | undefined>({
+    _id: "",
+    title: "",
+    plot: "",
+    poster: "",
+    genres: [],
+    runtime: 0,
+    year: 0,
+    imdb: {
+      rating: 0,
+      votes: 0,
+    },
+  });
+  const [allComments, setAllComments] = useState<Array<CommentType>>([]);
 	const [filter, setFilter] = useState("");
 	const [sort, setSort] = useState("");
 	const [input, setInput] = useState("");
@@ -35,13 +36,25 @@ function App() {
 		setPage(buttonIndex);
 	}
 
-	function handleDetailClick(id: string) {
-		const film = films.find((film) => film._id === id);
-		setFilmtoView(film);
-	}
+  function handleDetailClick(id: string) {
+    const film = films.find((film) => film._id === id);
+    setFilmtoView(film);
+  }
 
-	function handleInput(inputInput) {
-		setInput(inputInput);
+  useEffect(() => {
+    async function loadComments() {
+      const data = await fetchComments("", page);
+      const comments = data.comments;
+      const totalPages = data.totalPages;
+      console.log(comments);
+      setTotalPages(totalPages);
+      setAllComments(comments);
+    }
+    loadComments();
+  }, [page]);
+
+	function handleInput(input) {
+		setInput(input);
 	}
 
 	function handleFilter(filterInput: string | number) {
@@ -69,7 +82,6 @@ function App() {
 					<HomePage
 						films={films}
 						onHandleDetailClick={handleDetailClick}
-						onGeneratePages={generatePages}
 						onHandlePagination={handlePagination}
 					/>
 				}
@@ -79,13 +91,11 @@ function App() {
 					path="/films"
 					element={
 						<Films
-							films={films}
-							onHandleDetailClick={handleDetailClick}
-							onGeneratePages={generatePages}
-							onHandlePagination={handlePagination}
-							onHandleFilter={handleFilter}
-							onHandleInput={handleInput}
-						/>
+              films={films}
+              onHandleDetailClick={handleDetailClick}
+              onHandlePagination={handlePagination}
+              onHandleFilter={handleFilter}
+              onHandleInput={handleInput}					/>
 					}
 				/>
 			}
@@ -104,7 +114,7 @@ function App() {
 					/>
 				}
 			/>
-			<Route path="/comments" element={<Comments />} />
+			<Route path="/comments" element={<Comments comments={allComments} onHandlePagination={handlePagination} />} />
 		</Routes>
 	);
 }

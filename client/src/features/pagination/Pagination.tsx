@@ -1,14 +1,14 @@
-import { Button } from "../../../components/Button";
+import { Button } from "../../components/Button";
 import "./Pagination.css";
+import { generatePages } from "../../utils/functions/utilityFunctions";
 
 function Pagination(props: {
-  onGeneratePages: Function;
   onHandlePagination: Function;
-  totalPages?: number;
+  totalPages: number;
 }) {
   return (
     <div className="pagination">
-      {props.onGeneratePages(8).map((index: number) => {
+      {generatePages(props.totalPages).map((index: number) => {
         return (
           <Button key={index}
             onClick={() => props.onHandlePagination(index + 1)}

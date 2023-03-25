@@ -18,11 +18,8 @@ function HomeLayout(props: {
     <>
       <Container className="homeLayoutContainer">
         <Navbar
-          className={"navbar"}
-          films={props.films}
-          onHandleDetailClick={props.onHandleDetailClick}
         />
-        <Filterbar />
+
         <FilmList
           films={filmsToDisplay}
           onHandleDetailClick={props.onHandleDetailClick}

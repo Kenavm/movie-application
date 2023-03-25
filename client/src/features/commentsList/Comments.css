@@ -1,20 +1,21 @@
 .comments {
-   display: flex;
-   flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
-    color: white;
-    margin: 0px;
+  color: white;
+  margin: 0px;
 }
 
 .text {
-    display: flex;
-    justify-content: center;
-    color: white;
+  display: flex;
+  justify-content: center;
+  color: white;
 }
 
 .header {
-    margin-bottom: 20px;
-    color: white;
+  margin-bottom: 2%;
+  margin-top: 10%;
+  color: white;
 }
