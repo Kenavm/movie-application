@@ -24,7 +24,7 @@ export const getFilms = async (req, res) => {
 			res.status(200).json({
 				success: true,
 				count: films.length,
-				data: films,
+				films: films,
 				msg: `displaying ${films.length} films from ${req.query.year}`,
 			});
 		} catch (err) {
@@ -42,7 +42,7 @@ export const getFilms = async (req, res) => {
 			res.status(200).json({
 				success: true,
 				count: films.length,
-				data: films,
+				films: films,
 				msg: `displaying ${films.length} films that contain "${filmTitle}" in their title`,
 			});
 		} catch (err) {
@@ -58,7 +58,7 @@ export const getFilms = async (req, res) => {
 			res.status(200).json({
 				success: true,
 				count: films.length,
-				data: films,
+				films: films,
 				msg: `displaying ${films.length} films that are the genre ${filmGenre}`,
 			});
 		} catch (err) {
@@ -74,7 +74,7 @@ export const getFilms = async (req, res) => {
 			res.status(200).json({
 				success: true,
 				count: films.length,
-				data: films,
+				films: films,
 				msg: `showing all movies with an imbd rating higher than ${filmRating}`,
 			});
 		} catch (err) {
@@ -90,7 +90,7 @@ export const getFilms = async (req, res) => {
 			res.status(200).json({
 				success: true,
 				count: films.length,
-				data: films,
+				films: films,
 				msg: `showing all movies with a film length less than ${filmRuntime}`,
 			});
 		} catch (err) {
@@ -107,7 +107,7 @@ export const getFilms = async (req, res) => {
 			res.status(200).json({
 				success: true,
 				count: films.length,
-				data: films,
+				films: films,
 				msg: "show all films",
 			});
 		} catch (err) {
@@ -127,7 +127,7 @@ export const getFilmByID = async (req, res, next) => {
 		res.status(200).json({
 			success: true,
 			count: films.length,
-			data: films,
+			films: films,
 			msg: `displaying film with ID ${req.params.id}`,
 		});
 	} catch (err) {
